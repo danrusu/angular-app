@@ -1,20 +1,26 @@
 import { defineConfig } from 'cypress';
 
 const configuration = {
-  baseUrl: 'http://localhost:4200',
-  supportFile: 'cypress/support/e2e.ts',
-  // specPattern: 'cypress/e2e/{features/**/*.feature,spec/**/*.ts}',
-  experimentalSessionAndOrigin: true,
-  video: false,
-  screenshotOnRunFailure: false,
-  chromeWebSecurity: false,
+  e2e: {
+    specPattern: 'cypress/e2e/**/*.cy.ts',
+    baseUrl: 'http://localhost:4200',
+    supportFile: 'cypress/support/e2e.ts',
+    experimentalSessionAndOrigin: true,
+    video: false,
+    screenshotOnRunFailure: false,
+    chromeWebSecurity: false,
+  },
+  component: {
+    specPattern: '**/*.component.cy.ts',
+    video: false,
+    screenshotOnRunFailure: false,
+  },
 };
 
 async function setupNodeEvents(
   on: Cypress.PluginEvents,
-  config: Cypress.PluginConfigOptions,
+  config: Cypress.PluginConfigOptions
 ): Promise<Cypress.PluginConfigOptions> {
-
   on('task', {
     logToTerminal(message) {
       console.log(`@@@ ${message}`);
@@ -29,13 +35,13 @@ async function setupNodeEvents(
 export default defineConfig({
   e2e: {
     setupNodeEvents,
-    ...configuration,
+    ...configuration.e2e,
   },
-  "component": {
-    "devServer": {
-      "framework": "angular",
-      "bundler": "webpack"
+  component: {
+    devServer: {
+      framework: 'angular',
+      bundler: 'webpack',
     },
-    "specPattern": "**/*.cy.ts"
-  }
+    ...configuration.component,
+  },
 });

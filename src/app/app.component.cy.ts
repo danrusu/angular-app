@@ -1,4 +1,4 @@
-import { AppComponent } from '../src/app/app.component'
+import { AppComponent } from './app.component'
 
 describe('AppComponent test', () => {
   it('mounts', () => {
