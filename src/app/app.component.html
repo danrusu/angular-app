@@ -1,1 +1,9 @@
-<h1 id="title">Welcome {{data.title}}</h1>
+<h1 id="title">Welcome {{ data.title }}</h1>
+
+<input
+  alt="set new title"
+  class="newTitle"
+  [value]="data.title"
+  (keyup)="updateTitle(titleInput.value)"
+  #titleInput
+/>

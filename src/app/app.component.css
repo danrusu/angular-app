@@ -1,3 +1,10 @@
-#title{
-    color: blue;
+#title {
+  color: blue;
+}
+
+input.newTitle {
+  border: 2px solid black;
+  width: 800px;
+  height: 30px;
+  font-size: 25px;
 }
