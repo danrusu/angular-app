@@ -7,3 +7,9 @@
   (keyup)="updateTitle(titleInput.value)"
   #titleInput
 />
+
+<stepper></stepper>
+
+<div id="courses">
+  <course-card *ngFor="let course of courses" [course]="course"></course-card>
+</div>
