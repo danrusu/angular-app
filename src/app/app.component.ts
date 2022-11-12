@@ -8,7 +8,7 @@ import { Course } from './model/course';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  courses = COURSES;
+  courses = COURSES.filter((x) => x?.description);
 
   data = {
     title: 'Angular DEV',
@@ -16,5 +16,10 @@ export class AppComponent {
 
   updateTitle(newTitle: string) {
     this.data.title = newTitle;
+  }
+
+  onCourseSelected(course: Course) {
+    console.log(`App component - courseSelected event bubbled up`);
+    console.log(`Selected: ${JSON.stringify(course, null, 2)}`);
   }
 }

@@ -11,5 +11,10 @@
 <stepper></stepper>
 
 <div id="courses">
-  <course-card *ngFor="let course of courses" [course]="course"></course-card>
+  <course-card
+    *ngFor="let course of courses; index as i"
+    [course]="course"
+    [cardIndex]="i + 1"
+    (courseSelected)="onCourseSelected($event)"
+  ></course-card>
 </div>
