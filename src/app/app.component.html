@@ -8,9 +8,15 @@
   #titleInput
 />
 
-<stepper></stepper>
+<!-- <stepper></stepper> -->
 
-<div id="courses">
+<div>
+  <div class="pipe">
+    {{ data.price | currency: data.currency }}
+  </div>
+</div>
+
+<div id="courses" *ngIf="courses$ | async as courses">
   <course-card
     *ngFor="let course of courses; index as i"
     [course]="course"
