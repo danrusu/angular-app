@@ -1,5 +1,9 @@
 import { Request, Response } from 'express';
-import { findCourseById } from './db-data';
+import { COURSES } from './db-data';
+
+function findCourseById(courseId: number) {
+  return COURSES.find((course: any) => course?.id === courseId);
+}
 
 export function saveCourse(req: Request, res: Response) {
   const id = parseInt(req.params['id']);

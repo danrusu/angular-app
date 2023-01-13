@@ -21,6 +21,6 @@
     *ngFor="let course of courses; index as i"
     [course]="course"
     [cardIndex]="i + 1"
-    (courseSelected)="onCourseSelected($event)"
+    (courseSaved)="save($event)"
   ></course-card>
 </div>

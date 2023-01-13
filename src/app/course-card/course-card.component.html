@@ -5,7 +5,7 @@
   [ngStyle]="cardStyle()"
 >
   <div class="course-title">
-    {{ cardIndex + " " + course.description }}
+    {{ cardIndex + ' ' + course.description }}
   </div>
 
   <img
@@ -20,7 +20,8 @@
   </ng-template>
 
   <div class="course-description">
-    {{ course.longDescription }}
+    Edit description:
+    <input #courseDescription [value]="course.description" size="50" />
   </div>
 
   <div class="course-category" [ngSwitch]="course.category">
@@ -30,5 +31,5 @@
     <div class="category" *ngSwitchDefault>All levels</div>
   </div>
 
-  <button (click)="onCourseViewed()">View course</button>
+  <button (click)="onSaveClick(courseDescription.value)">Save course</button>
 </div>

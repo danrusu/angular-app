@@ -14,15 +14,16 @@ export class CourseCardComponent implements OnInit {
   @Input()
   cardIndex: number;
 
-  @Output()
-  courseSelected = new EventEmitter<Course>();
+  @Output('courseSaved')
+  courseSaved = new EventEmitter<Course>();
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  onCourseViewed() {
-    this.courseSelected.emit(this.course);
+  onSaveClick(description: string) {
+    console.log(`saveClick event: ${description}`);
+    this.courseSaved.emit({ ...this.course, description });
   }
 
   cardClasses() {

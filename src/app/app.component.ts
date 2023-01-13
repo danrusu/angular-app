@@ -11,6 +11,7 @@ import { COURSES } from '../../server/db-data';
 import { Course } from './model/course';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { CoursesService } from './services/courses.service';
 
 @Component({
   selector: 'app-root',
@@ -20,19 +21,14 @@ import { Observable } from 'rxjs';
 export class AppComponent implements OnInit {
   courses$: Observable<Course[]>;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private coursesService: CoursesService,
+  ) {}
 
   ngOnInit() {
-    const params = new HttpParams().set('page', 1).set('pageSize', 10);
-
-    this.courses$ = this.http.get<Course[]>('/api/courses', { params });
-
-    // .subscribe((courses: Course[]) => {
-    //   this.courses = courses;
-    // });
+    this.courses$ = this.coursesService.loadCourses();
   }
-
-  // courses = COURSES.filter(x => x?.description);
 
   data = {
     title: 'Angular DEV Course',
@@ -44,8 +40,10 @@ export class AppComponent implements OnInit {
     this.data.title = newTitle;
   }
 
-  onCourseSelected(course: Course) {
-    console.log(`App component - courseSelected event bubbled up`);
-    console.log(`Selected: ${JSON.stringify(course, null, 2)}`);
+  save(course: Course) {
+    console.log('app save course');
+    this.coursesService.save(course).subscribe(() => {
+      console.log('Course saved');
+    });
   }
 }
